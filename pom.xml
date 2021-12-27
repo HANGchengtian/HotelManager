@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+<<<<<<< HEAD
     <groupId>com.flybird</groupId>
     <artifactId>student</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -73,4 +74,15 @@
         </plugins>
     </build>
 
+=======
+    <groupId>com.hotel.demo</groupId>
+    <artifactId>HotelManager</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+>>>>>>> 9c2303d559373efb0d25bce5e698f2bcb8cd62cf
 </project>
