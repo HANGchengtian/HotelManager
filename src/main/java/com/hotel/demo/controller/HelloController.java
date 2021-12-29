@@ -29,10 +29,11 @@ public class HelloController {
         List<StudentModel> students = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             StudentModel student = new StudentModel();
-            student.setNo("11");
-            student.setName("justin");
+            student.setNo("34");
+            student.setName("Eric");
             students.add(student);
         }
         return ResultModel.data(students);
+
     }
 }
