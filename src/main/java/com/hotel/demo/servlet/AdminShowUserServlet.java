@@ -21,6 +21,7 @@ public class AdminShowUserServlet extends HttpServlet {
      */
     public AdminShowUserServlet() {
         super();
+        super();
     }
 
     /**

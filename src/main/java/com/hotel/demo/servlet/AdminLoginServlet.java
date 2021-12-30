@@ -38,6 +38,7 @@ public class AdminShowUserServlet extends HttpServlet {
         String sql = "select * from users where id='"+id+"'";
         String args[] ={"id","name","pwd","realname","sex","age","card","address","phone","email","code","type"};
         ArrayList al = sb.select(sql, args);
+        ArrayList al = sb.select(sql, args);
         request.setAttribute("user", al);
         RequestDispatcher rd=request.getRequestDispatcher("/admin/showuser.jsp");
         rd.forward(request,response);
