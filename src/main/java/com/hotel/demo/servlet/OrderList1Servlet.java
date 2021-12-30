@@ -12,14 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Validate;
 import bean.SelectBean;
 
-public class AdminShowUserServlet extends HttpServlet {
+public class OrderList1Servlet extends HttpServlet {
 
     /**
      * Constructor of the object.
      */
-    public AdminShowUserServlet() {
+    public OrderList1Servlet() {
         super();
     }
 
@@ -33,17 +34,24 @@ public class AdminShowUserServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        SelectBean sb = new SelectBean();
-        String sql = "select * from users where id='"+id+"'";
-        String args[] ={"id","name","pwd","realname","sex","age","card","address","phone","email","code","type"};
-        ArrayList al = sb.select(sql, args);
-        ArrayList al = sb.select(sql, args);
-        request.setAttribute("user", al);
-        request.setAttribute("user", al);
-        RequestDispatcher rd=request.getRequestDispatcher("/admin/showuser.jsp");
-        rd.forward(request,response);
+        Validate vd = new Validate();
+        String username = vd.getUnicode(request.getParameter("username"));
+        String bookname = vd.getUnicode(request.getParameter("bookname"));
+        String sql = "select a.name as username,realname,b.name as bookname,c.* from users a,hotel b,beforehand c where a.id=c.users and b.id=c.hotels ";
+        String[] args = {"username","realname","bookname","id","users","hotels","price","begintime"};
 
+        if(username != null && !username.equals("")){
+            sql += "and a.name like '%"+username+"%'";
+        }
+        if(bookname != null && !bookname.equals("")){
+            sql += "and b.name like '%"+bookname+"%'";
+        }
+
+        SelectBean sb = new SelectBean();
+        ArrayList al = sb.select(sql, args);
+        request.setAttribute("order1", al);
+        RequestDispatcher rd=request.getRequestDispatcher("/admin/order1.jsp");
+        rd.forward(request,response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
