@@ -1,12 +1,6 @@
 package com.hotel.demo.servlet;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -14,20 +8,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.SelectBean;
+import util.Validate;
+import bean.AdminLoginBean;
 
-public class AdminShowUserServlet extends HttpServlet {
+public class AdminLoginServlet extends HttpServlet {
 
     /**
      * Constructor of the object.
      */
-    public AdminShowUserServlet() {
+    public AdminLoginServlet() {
         super();
-<<<<<<< HEAD
-        super();
-=======
->>>>>>> origin/master
     }
 
     /**
@@ -40,20 +32,26 @@ public class AdminShowUserServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        SelectBean sb = new SelectBean();
-<<<<<<< HEAD
-        SelectBean sb = new SelectBean();
-=======
->>>>>>> origin/master
-        String sql = "select * from users where id='"+id+"'";
-        String args[] ={"id","name","pwd","realname","sex","age","card","address","phone","email","code","type"};
-        ArrayList al = sb.select(sql, args);
-        request.setAttribute("user", al);
-        RequestDispatcher rd=request.getRequestDispatcher("/admin/showuser.jsp");
+        Validate vd = new Validate();
+        String name = vd.getUnicode(request.getParameter("name"));
+        String pwd = vd.getUnicode(request.getParameter("pwd"));
+        String str = "";
+        AdminLoginBean lb = new AdminLoginBean();
+        int flag = lb.login(name, pwd);
+        ArrayList al = lb.getArrayLst();
+        HttpSession session = request.getSession();
+        session.setAttribute("adminlogin", al);
+        if(flag == 2 || flag == 3){
+            str = "/admin/index.jsp";
+            request.setAttribute("error", "1");
+        }
+        if(flag == 1){
+            str = "/admin/putup.jsp";
+        }
+        RequestDispatcher rd=request.getRequestDispatcher(str);
         rd.forward(request,response);
-
     }
+
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,7 +68,4 @@ public class AdminShowUserServlet extends HttpServlet {
     }
 
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
