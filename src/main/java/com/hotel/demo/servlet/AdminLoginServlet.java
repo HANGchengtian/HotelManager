@@ -40,6 +40,7 @@ public class AdminShowUserServlet extends HttpServlet {
         ArrayList al = sb.select(sql, args);
         ArrayList al = sb.select(sql, args);
         request.setAttribute("user", al);
+        request.setAttribute("user", al);
         RequestDispatcher rd=request.getRequestDispatcher("/admin/showuser.jsp");
         rd.forward(request,response);
 

@@ -36,6 +36,7 @@ public class AdminShowUserServlet extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         SelectBean sb = new SelectBean();
+        SelectBean sb = new SelectBean();
         String sql = "select * from users where id='"+id+"'";
         String args[] ={"id","name","pwd","realname","sex","age","card","address","phone","email","code","type"};
         ArrayList al = sb.select(sql, args);
