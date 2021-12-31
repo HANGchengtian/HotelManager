@@ -1,0 +1,4 @@
+package com.hotel.demo.servlet;
+
+public class PutupServlet {
+}
